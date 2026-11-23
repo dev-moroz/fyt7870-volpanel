@@ -4,6 +4,11 @@ Floating "+ / −" volume buttons on top of all apps for FYT UIS7870 head units 
 
 The firmware's own floating volume buttons don't work in third-party launchers and apps. VolPanel draws its own.
 
+## Screenshots
+| Home screen | Volume change |
+|---|---|
+| ![Home](docs/volpanel_home.png) | ![Press](docs/volpanel_press.png) |
+
 ## Features
 - Two square buttons shown on top of all apps.
 - Volume is changed through the stock `com.syu.ms` service — the same level as the steering wheel / knob (not Android's `STREAM_MUSIC`).
