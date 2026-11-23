@@ -1,37 +1,37 @@
 # VolPanel — volume buttons overlay for FYT 7870
 
-Кнопки громкости «+ / −» поверх всех приложений для магнитол FYT UIS7870 (Android 13). Без root, без ПК.
+Floating "+ / −" volume buttons on top of all apps for FYT UIS7870 head units (Android 13). No root, no PC required.
 
-Штатные плавающие кнопки громкости прошивки не работают в сторонних лаунчерах и приложениях. VolPanel рисует свои.
+The firmware's own floating volume buttons don't work in third-party launchers and apps. VolPanel draws its own.
 
-## Возможности
-- Две квадратные кнопки поверх всех приложений.
-- Громкость через штатный сервис `com.syu.ms` — тот же уровень, что руль/ручка (а не `STREAM_MUSIC` Android).
-- Кнопки перетаскиваются пальцем, положение запоминается. Тап — шаг, удержание — автоповтор.
-- Автозапуск при включении (`LOCKED_BOOT_COMPLETED`, ~15 с после старта).
+## Features
+- Two square buttons shown on top of all apps.
+- Volume is changed through the stock `com.syu.ms` service — the same level as the steering wheel / knob (not Android's `STREAM_MUSIC`).
+- Drag the buttons anywhere with your finger; the position is remembered. Tap = one step, hold = auto-repeat.
+- Starts automatically on boot (`LOCKED_BOOT_COMPLETED`, ~15 s after power-on).
 
-## Установка
-1. Скачать `volpanel.apk` из [Releases](../../releases).
-2. Установить, открыть один раз, разрешить «Поверх других окон».
+## Install
+1. Download `volpanel.apk` from [Releases](../../releases).
+2. Install it, open it once and allow "Display over other apps".
 
-## Как это работает
+## How it works
 ```
 bindService(Intent("com.syu.ms.toolkit").setPackage("com.syu.ms"))
   → IRemoteToolkit.getRemoteModule(4)
   → IRemoteModule.cmd(0, int[]{arg}, null, null)
 ```
-`arg`: `-1` = vol+, `-2` = vol−, `0..36` = абсолютное значение. Проверки подписи вызывающего нет.
+`arg`: `-1` = vol+, `-2` = vol−, `0..36` = absolute level. The service does not check the caller's signature.
 
-## Сборка
-Без Gradle, нужны Android SDK (build-tools 36, platform 35) и JDK:
+## Build
+No Gradle. Requires Android SDK (build-tools 36, platform 35) and a JDK:
 ```
 KS=my.jks KS_PASS=... ./build.sh
 ```
 
-## Проверено
-FYT UIS7870 6/128, Android 13 (сборка 2026-05-08), темы launcher_v2 / launcher24. На других платах не проверялось. Без гарантий.
+## Tested on
+FYT UIS7870 6/128, Android 13 (build date 2026-05-08), themes launcher_v2 / launcher24. Not tested on other boards. No warranty.
 
-## Ограничения
-Размер кнопок (180 px) задан в коде (`PanelService.java`).
+## Limitations
+Button size (180 px) is hardcoded in `PanelService.java`.
 
-Лицензия: MIT.
+License: MIT.
